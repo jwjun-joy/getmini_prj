@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인사 페이지</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        /* JavaScript가 변환한 후 적용될 스타일 */
+        h1 {
+            color: #1a73e8;
+            margin: 0;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .name-tag {
+            color: #1a73e8;
+            font-weight: bold;
+            border: 2px solid #1a73e8;
+            padding: 0 12px;
+            border-radius: 8px;
+            background-color: #e8f0fe;
+            display: inline-flex;
+            align-items: center;
+            height: 3.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 요청하신 대로 HTML은 단순한 문자열 상태입니다 -->
+        <h1 id="greeting">Hello, {{user name}}</h1>
+    </div>
+
+    <script>
+        // 페이지가 로드되면 실행
+        document.addEventListener("DOMContentLoaded", function() {
+            const h1 = document.getElementById('greeting');
+            const originalText = h1.innerHTML;
+
+            // 정규표현식을 사용하여 {{...}} 패턴을 찾고, span 태그로 감싸서 교체
+            // {{ 와 }} 는 화면에서 제거되고, 그 안의 내용만 남습니다.
+            const styledText = originalText.replace(/{{(.*?)}}/g, '<span class="name-tag">$1</span>');
+            
+            h1.innerHTML = styledText;
+        });
+    </script>
+</body>
+</html>
